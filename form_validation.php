@@ -47,4 +47,23 @@ function validateLoginForm($username,$password){
     return $errors;
 }
 
+function validateCreateWorldForm($name, $description, $img){
+    $errors = [];
+
+    if(empty($name) || empty($description)){
+        $errors="You must enter a name and decription for your new world";
+    }
+
+    return $errors;
+    ## TODO image validation
+}
+
+function setSelectedWorld($user_id, $world){
+    printLog($world);
+}
+
+function printLog($message){
+    echo "<script>console.log(".$message.")</script>";
+}
+
 ?>

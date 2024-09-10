@@ -1,6 +1,7 @@
 <?php
-session_start();
 require_once 'dbconnect.php';
+require_once 'form_validation.php';
+
 ?>
 
 <!DOCTYPE html>

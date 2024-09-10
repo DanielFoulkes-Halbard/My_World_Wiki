@@ -1,10 +1,12 @@
 <?php 
+session_start();
 
 $stmt = $pdo->prepare("SELECT * FROM  worlds WHERE user_id = ?");
 $stmt->execute([$_SESSION['user_id']]);
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $worlds = [];
+$ids = [];
 
 if (!empty($results)){
     foreach ($results as $result){
@@ -19,9 +21,14 @@ if (!empty($results)){
         <?php 
         if(!empty($worlds)){
             echo  "Select a world:";
+            echo "<br>";
 
-            foreach($worlds as $world){
-                "<br><input type='button' class='world-button' onclick=\"openWorld('dashcontent', 'world_body.php')\" value='" . htmlspecialchars($world) . "'>";
+            foreach($results as $result){
+                $userId = htmlspecialchars($_SESSION['user_id'], ENT_QUOTES);  // Properly escape user_id
+                $escapedWorld = htmlspecialchars($result['name'], ENT_QUOTES);         // Properly escape world name
+                $world_id = htmlspecialchars($result['world_id'], ENT_QUOTES);
+                
+                echo "<br><input type='button' class='world-button' onclick=\"openWorld('$userId', '$world_id')\" value='$escapedWorld'><br>";
             }
         }
         else{

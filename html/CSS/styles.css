@@ -104,6 +104,20 @@ p {
     text-align: center;
 }
 
+.world-button {
+    width: 150px;
+    height: 30px;
+    background-color: #674636;
+    color: white;
+    justify-content: center;
+    padding: 5px 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font: 16px;
+    transition: background-color 0.3s ease;
+}
+
 #form {
     border: 2px red;
     padding: 5%;
@@ -157,6 +171,7 @@ form input[type="submit"]{
 .button-dash {
     display: flex;
     gap: 5%;
+    margin: 2%;
 }
 
 .button-dash input[type="button"]{

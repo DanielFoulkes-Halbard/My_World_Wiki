@@ -31,6 +31,9 @@ function loginAlert(message){
     }, 1000);
 }
 
-function openWorld(id, page){
+function openWorld(user_id, world_id){
+    console.log(user_id);
+    console.log(world_id);
 
+    window.location.href = "/my_world_wiki/world_landing.php?world_id=" + encodeURIComponent(world_id);
 }
