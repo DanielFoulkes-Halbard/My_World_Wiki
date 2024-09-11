@@ -6,11 +6,11 @@ $stmt->execute([$_SESSION['user_id']]);
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $worlds = [];
-$ids = [];
 
 if (!empty($results)){
     foreach ($results as $result){
-        $worlds[] = $result['name'];
+        $name = $result['name'];
+        $worlds[$name] = $result['world_id'];
     }
 }
 ?>
@@ -23,12 +23,14 @@ if (!empty($results)){
             echo  "Select a world:";
             echo "<br>";
 
-            foreach($results as $result){
+            $worldnames = array_keys($worlds);
+
+            foreach($worldnames as $worldname){
                 $userId = htmlspecialchars($_SESSION['user_id'], ENT_QUOTES);  // Properly escape user_id
-                $escapedWorld = htmlspecialchars($result['name'], ENT_QUOTES);         // Properly escape world name
-                $world_id = htmlspecialchars($result['world_id'], ENT_QUOTES);
+                $escapedWorld = htmlspecialchars($worldname, ENT_QUOTES);         // Properly escape world name
+                $world_id = htmlspecialchars($worlds[$worldname], ENT_QUOTES);
                 
-                echo "<br><input type='button' class='world-button' onclick=\"openWorld('$userId', '$world_id')\" value='$escapedWorld'><br>";
+                echo "<br><input type='button' class='world-button' onclick=\"openWorld('$userId', '$world_id', '$worldname')\" value='$escapedWorld'><br>";
             }
         }
         else{
