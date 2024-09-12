@@ -51,11 +51,21 @@ function validateCreateWorldForm($name, $description, $img){
     $errors = [];
 
     if(empty($name) || empty($description)){
-        $errors="You must enter a name and decription for your new world";
+        $errors[]="You must enter a name and decription for your new world";
     }
 
     return $errors;
     ## TODO image validation
+}
+
+function validateCreateArticleForm($title, $type, $content, $img){
+    $errors = [];
+
+    if(empty($title) || empty($content)){
+        $errors[]= "You must enter an article title and content";
+    }
+
+    return $errors;
 }
 
 function setSelectedWorld($user_id, $world){
@@ -63,7 +73,7 @@ function setSelectedWorld($user_id, $world){
 }
 
 function printLog($message){
-    echo "<script>console.log(".$message.")</script>";
+    echo "<script>console.log(".json_encode($message).")</script>";
 }
 
 ?>

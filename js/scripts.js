@@ -38,3 +38,7 @@ function openWorld(user_id, world_id, name){
 
     window.location.href = "/my_world_wiki/world_landing.php?world_id=" + encodeURIComponent(world_id) + "&world_name=" + encodeURIComponent(name);
 }
+
+function logToConsole(message){
+    console.log(message);
+}
